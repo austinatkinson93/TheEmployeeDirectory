@@ -20,8 +20,8 @@ class DirectoryContainer extends Component {
     searchEmployees = () => {
         EmployeeApi.search()
             .then(res => {
-                this.setState({ employees: res.data.data })
-                console.log(res.data)
+                this.setState({ employees: res.data.results })
+
             })
             .catch(err => console.log(err));
     };
@@ -39,12 +39,12 @@ class DirectoryContainer extends Component {
             employeesCopy.sort((a, b) => {
                 let nameA;
                 let nameB;
-                if (sortThing !== "employee_name") {
+                if (sortThing !== "name") {
                     nameA = +a[sortThing];
                     nameB = +b[sortThing];
                 } else {
-                    nameA = a[sortThing].toUpperCase(); // ignore upper and lowercase
-                    nameB = b[sortThing].toUpperCase(); // ignore upper and lowercase
+                    nameA = a[sortThing].first.toUpperCase(); // ignore upper and lowercase
+                    nameB = b[sortThing].first.toUpperCase(); // ignore upper and lowercase
                 }
                 if (nameA < nameB) {
                     return -1;
@@ -62,12 +62,12 @@ class DirectoryContainer extends Component {
             employeesCopy.sort((a, b) => {
                 let nameA;
                 let nameB;
-                if (sortThing !== "employee_name") {
+                if (sortThing !== "name") {
                     nameA = +a[sortThing];
                     nameB = +b[sortThing];
                 } else {
-                    nameA = a[sortThing].toUpperCase(); // ignore upper and lowercase
-                    nameB = b[sortThing].toUpperCase(); // ignore upper and lowercase
+                    nameA = a[sortThing].first.toUpperCase(); // ignore upper and lowercase
+                    nameB = b[sortThing].first.toUpperCase(); // ignore upper and lowercase
                 }
                 if (nameA < nameB) {
                     return 1;
@@ -89,11 +89,13 @@ class DirectoryContainer extends Component {
             <div className="container">
                 <div className="row">
                     <form>
-                        <input
-                            value={this.state.search}
-                            onChange={this.handleInputChange}
-                            placeholder="type stuff here"
-                        />
+                        <div className="form-group">
+                            <input className="form-control"
+                                value={this.state.search}
+                                onChange={this.handleInputChange}
+                                placeholder="Search"
+                            />
+                        </div>
                     </form>
                 </div>
                 <div className="row">
@@ -107,7 +109,7 @@ class DirectoryContainer extends Component {
 
                 </div>
             </div>
-           
+
         );
     }
 

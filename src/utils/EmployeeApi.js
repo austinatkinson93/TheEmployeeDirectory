@@ -1,11 +1,11 @@
 import axios from "axios"
 
-const URL = "http://dummy.restapiexample.com/api/v1/employees"
+const URL = "https://randomuser.me/api/?results=200&nat=us"
 
 
 export default {
     search: function() {
-      return axios.get(URL);
+      return axios.get(URL)
     }
   };
 

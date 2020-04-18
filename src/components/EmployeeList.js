@@ -2,26 +2,32 @@ import React from "react";
 
 
 function EmployeeList(props) {
-    let filteredArr = props.employees.filter(employee => employee.employee_name.toUpperCase().includes(props.search.toUpperCase()))
+    let filteredArr = props.employees.filter(employee => employee.name.first.toUpperCase().includes(props.search.toUpperCase()))
     return <div>
-        {filteredArr.map((element) => {
-           return <div>
-            <table>
+        <div>
+            <table className="table">
                 <thead>
-                    <th><button name="employee_name" onClick={props.onClick}>Name</button></th>
-                    <th><button name="employee_salary" onClick={props.onClick}>Salary</button></th>
-                    <th><button name="employee_age" onClick={props.onClick}>Age</button></th>
+                    <tr>
+                        <th>image</th>
+                        <th scope="col"><button name="name" onClick={props.onClick}>Name</button></th>
+                        <th scope="col"><button name="phone" onClick={props.onClick}>Phone</button></th>
+                        <th scope="col"><button name="email" onClick={props.onClick}>Email</button></th>
+                        <th scope="col"><button name="dob" onClick={props.onClick}>DOB</button></th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{element.employee_name}</td>
-                        <td>{element.employee_salary}</td>
-                        <td>{element.employee_age}</td>
-                    </tr>
+                    {filteredArr.map((element, i) => {
+                        return <tr key={i}>
+                            <td><img src={element.picture.medium}></img></td>
+                            <td>{element.name.first} {element.name.last}</td>
+                            <td>{element.phone}</td>
+                            <td>{element.email}</td>
+                            <td>{element.dob.date.slice(0,10)}</td>
+                        </tr>
+                    })}
                 </tbody>
             </table>
-            </div>
-        })}
+        </div>
     </div>
 }
 
