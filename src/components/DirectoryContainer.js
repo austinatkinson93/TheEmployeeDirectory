@@ -6,7 +6,9 @@ import "./directoryStyling/style.css"
 
 class DirectoryContainer extends Component {
     state = {
-        employees: []
+        employees: [],
+        search: "",
+        sorted: false
     }
 
     async componentDidMount() {
@@ -24,42 +26,88 @@ class DirectoryContainer extends Component {
             .catch(err => console.log(err));
     };
 
+    handleInputChange = (event) => {
+        const search = event.target.value;
+
+        this.setState({ search });
+    };
+
+    handleClick = (event) => {
+        let employeesCopy = [...this.state.employees];
+        let sortThing = event.target.name;
+        if (this.state.sorted === false) {
+            employeesCopy.sort((a, b) => {
+                let nameA;
+                let nameB;
+                if (sortThing !== "employee_name") {
+                    nameA = +a[sortThing];
+                    nameB = +b[sortThing];
+                } else {
+                    nameA = a[sortThing].toUpperCase(); // ignore upper and lowercase
+                    nameB = b[sortThing].toUpperCase(); // ignore upper and lowercase
+                }
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+
+                // names must be equal
+                return 0;
+            })
+
+            this.setState({ employees: employeesCopy, sorted: true });
+        } else {
+            employeesCopy.sort((a, b) => {
+                let nameA;
+                let nameB;
+                if (sortThing !== "employee_name") {
+                    nameA = +a[sortThing];
+                    nameB = +b[sortThing];
+                } else {
+                    nameA = a[sortThing].toUpperCase(); // ignore upper and lowercase
+                    nameB = b[sortThing].toUpperCase(); // ignore upper and lowercase
+                }
+                if (nameA < nameB) {
+                    return 1;
+                }
+                if (nameA > nameB) {
+                    return -1;
+                }
+
+                // names must be equal
+                return 0;
+            })
+
+            this.setState({ employees: employeesCopy, sorted: false });
+        }
+    }
+
     render() {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-3">
+                    <form>
+                        <input
+                            value={this.state.search}
+                            onChange={this.handleInputChange}
+                            placeholder="type stuff here"
+                        />
+                    </form>
+                </div>
+                <div className="row">
+                    <div className="col">
                         <EmployeeList
                             employees={this.state.employees}
-                            section="employee_name"
+                            search={this.state.search}
+                            onClick={this.handleClick}
                         />
                     </div>
 
-                    <div className="col-3">
-                        <button>Employee Name</button>
-                        <EmployeeList
-                            employees={this.state.employees}
-                            section="employee_name"
-                        />
-                    </div>
-
-                    <div className="col-3">
-                        <button>Salary</button>
-                        <EmployeeList
-                            employees={this.state.employees}
-                            section="employee_salary"
-                        />
-                    </div>
-
-                    <div className="col-3">
-                        <button>Age</button>
-                        <EmployeeList
-                            employees={this.state.employees}
-                            section="employee_age"
-                        />
-                    </div>
                 </div>
             </div>
+           
         );
     }
 
