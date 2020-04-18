@@ -4,20 +4,14 @@ Welcome to my Employee Directory application. This is a fairly simple mock appli
 
 ## installation
 * Here is the link to the [GitHub Repository](https://github.com/austinatkinson93/TheEmployeeDirectory)
-* Have a look at the [Deployed Application](https://austinatkinson93.github.io/TheCalender/)
+* Have a look at the [Deployed Application](https://austinatkinson93.github.io/TheEmployeeDirectory/)
 
 ## Usage
-This calender app is fairly easay to understand:
+Simply open the link to the deployed site to view all of the employees.
 
-* This app is rather simple. All you have to do is write your daily tasks into the apporpriate time block. 
-    - Color Key:
-        * Red: Current Hours
-        * Grey: Past Hours
-        * Green: Future Hours
+    - The employees can be searched by name (first or last) 
+    - Employees can also be sorted alphabetically by name
 
-* once done you can save your information by clicking the blue button at the end of each corressponding time block. 
-
-Enjoy!
 
 ## Credits 
 
@@ -26,7 +20,7 @@ Austin Atkinson: [GitHub](https://github.com/austinatkinson93)
 
 ## License
 
-Copyright (c) [2019] [Austin Atkinson]
+Copyright (c) [2020] [Austin Atkinson]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
