@@ -9,16 +9,16 @@ function EmployeeList(props) {
                 <thead>
                     <tr>
                         <th>image</th>
-                        <th scope="col"><button name="name" onClick={props.onClick}>Name</button></th>
-                        <th scope="col"><button name="phone" onClick={props.onClick}>Phone</button></th>
-                        <th scope="col"><button name="email" onClick={props.onClick}>Email</button></th>
-                        <th scope="col"><button name="dob" onClick={props.onClick}>DOB</button></th>
+                        <th scope="col"><a name="name" onClick={props.onClick}>Name</a></th>
+                        <th scope="col"><a name="phone" onClick={props.onClick}>Phone</a></th>
+                        <th scope="col"><a name="email" onClick={props.onClick}>Email</a></th>
+                        <th scope="col" ><a name="dob" onClick={props.onClick}>DOB</a></th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredArr.map((element, i) => {
                         return <tr key={i}>
-                            <td><img src={element.picture.medium}></img></td>
+                            <td><img alt= {element.name.first} src={element.picture.medium}></img></td>
                             <td>{element.name.first} {element.name.last}</td>
                             <td>{element.phone}</td>
                             <td>{element.email}</td>
